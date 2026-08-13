@@ -4,7 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
-import os
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_absolute_error
@@ -15,7 +14,7 @@ st.title("📊 Sales Data Analysis Dashboard")
 # ---------------- Load & clean data ----------------
 @st.cache_data
 def load_data(path):
-    df = pd.read_csv(r"C:\Users\MAHEK\Desktop\dsproject1.csv", encoding="latin1")
+    df = pd.read_csv(path, encoding="latin1")
     df.columns = [c.strip().replace(" ", "_").replace("-", "_") for c in df.columns]
     df = df.drop_duplicates()
     df = df.dropna(subset=["Sales", "Profit", "Discount", "Quantity"])
@@ -33,8 +32,8 @@ def load_data(path):
 
     return df
 
-# Load data - works on Streamlit Cloud
-df = load_data(r"C:\Users\MAHEK\Desktop\dsproject1\dsproject1.csv")
+# Load data - use relative path for cloud deployment
+df = load_data("dsproject1.csv")
 
 # Resolve the sub-category column name defensively — CSV headers vary
 SUBCAT_CANDIDATES = ["Sub_Category", "SubCategory", "Sub_category", "Subcategory"]
