@@ -34,7 +34,7 @@ def load_data(path):
     return df
 
 # Load data - works on Streamlit Cloud
-df = load_data("dsproject1.csv")
+df = load_data("C:\Users\MAHEK\Desktop\dsproject1\dsproject1.csv")
 
 # Resolve the sub-category column name defensively — CSV headers vary
 SUBCAT_CANDIDATES = ["Sub_Category", "SubCategory", "Sub_category", "Subcategory"]
